@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+</head>
+
+<body>
+    <button id="createELMA">Создать элемент</button>
+</body>
+<script>
+    var sendBody =
+    {
+        "context": {
+            "__name": "example",
+            "__directory": "00000000-0000-0000-0000-000000000000",
+            "__subscribers": [
+                "00000000-0000-0000-0000-000000000000"
+            ],
+            "__externalId": "example",
+            "testovoe_chislo": 365
+        },
+        "statusGroupId": "a35cd8de-0c73-4f6a-8218-90193d02e2e0",
+        "withEventForceCreate": true
+    }
+
+    var button = document.getElementById("createELMA")
+
+    button.addEventListener("click", e => {
+        fetch("https://ykatjo5fq4uom.elma365.ru/pub/v1/app/dogovory/front_to_elma365/create", {
+            method: "POST", body: sendBody, headers: { Authorization: `Bearer bb301652-4204-4b50-a14f-6fef87857d57` }
+        })
+            .then(response => response.text())
+    })
+</script>
+
+</html>
