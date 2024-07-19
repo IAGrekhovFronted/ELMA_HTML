@@ -29,10 +29,23 @@
     var button = document.getElementById("createELMA")
 
     button.addEventListener("click", e => {
-        fetch("https://ykatjo5fq4uom.elma365.ru/pub/v1/app/dogovory/front_to_elma365/create", {
-            method: "POST", body: sendBody, headers: { Authorization: `Bearer bb301652-4204-4b50-a14f-6fef87857d57` }
-        })
-            .then(response => response.text())
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "https://ykatjo5fq4uom.elma365.ru/pub/v1/app/dogovory/front_to_elma365/create", true);
+        xhr.setRequestHeader("Authorization", `Bearer bb301652-4204-4b50-a14f-6fef87857d57`);
+        xhr.setRequestHeader("Accept", "application/json");
+
+        // Обработка ответа
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log(xhr.responseText);
+            } else {
+                console.error(`Ошибка статуса: ${xhr.status}`);
+            }
+        };
+
+        // Отправка запроса
+        xhr.send();
     })
 </script>
 
